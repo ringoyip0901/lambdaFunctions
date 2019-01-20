@@ -1,0 +1,23 @@
+service: portfolio-send-message
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: us-east-1
+
+functions:
+  # Defines an HTTP API endpoint that calls the main function in create.js
+  # - method: POST request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  sendEmail:
+    # Defines an HTTP API endpoint that calls the main function in sendEmail.js
+    # - method: sendEmail request
+    handler: sendEmail.handler
+    events:
+      - http:
+          path: /sendemail
+          method: post
+          cors: true
+        
