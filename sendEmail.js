@@ -1,8 +1,10 @@
 const AWS = require ('aws-sdk');
+const querystring = require ('querystring');
 
 module.exports.handler = async event => {
-  const email = event.email;
-  const message = event.message;
+  const data = querystring.parse (event.body);
+  const email = data.email;
+  const message = data.message;
   try {
     const result = await sendEmail (email, message);
     if (result) {
